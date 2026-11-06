@@ -20,9 +20,6 @@ CLAUDE.local.md
 
 # Build files
 dist/
-build/
-.build-tools/
-.qualification/
 
 # Coverage files
 .coverage

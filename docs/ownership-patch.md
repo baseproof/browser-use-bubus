@@ -77,6 +77,16 @@ a failed-job retry. The test jobs explicitly select stable Python
 3.14, matching the qualified consumer. The upstream `>=3.11` package floor is
 unchanged; this release does not newly qualify every supported Python version.
 
+Hatchling also includes `.gitignore` in the sdist. The first publication
+preparation failed because the publication change added three ignore entries
+after qualification. A member-by-member local reproduction found only that file
+changed (356 to 393 bytes); the resulting sdist hash was
+`4f6deea4374d88bc0cac896714a67ef6e50941f959d27683092e85b84e2cb2dd`.
+Restore its qualified bytes and include its hash in the source audit. The
+accepted archive hashes remain unchanged; a regression rejects later changes
+to this build input before publication. No registry upload ran in the failed
+preparation.
+
 Build the sdist once from the reviewed source, then build the wheel from that
 sdist. Retain both exact archives, their hashes, source commit and installed
 qualification results. Source checks use the original strict Pyright settings

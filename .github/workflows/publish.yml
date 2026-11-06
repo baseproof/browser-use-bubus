@@ -1,20 +1,19 @@
-name: publish
+name: prepare private package
 
 on:
-  release:
-    types: [published]     # publish full release to PyPI when a release is created on Github
   workflow_dispatch:
 
 permissions:
-  contents: write
-  id-token: write
+  contents: read
 
 jobs:
-  publish_to_pypi:
-    if: github.event_name == 'release' || github.event_name == 'workflow_dispatch'
+  prepare:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.14'
       - uses: astral-sh/setup-uv@v6
         with:
           enable-cache: true
@@ -22,5 +21,11 @@ jobs:
       - run: uv sync
       - run: uv run ruff check --no-fix --select PLE # quick check for syntax errors to avoid waiting time doing the rest of the build
       - run: uv build
-      - run: uv run pytest tests                  # dont push the package to PyPI if the tests fail
-      - run: uv publish --trusted-publishing always
+      - run: uv run pytest tests
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bubus-archives-${{ github.run_id }}-${{ github.run_attempt }}
+          path: dist/*
+          if-no-files-found: error
+      # Publication is a separate, qualified private-registry operation.
+      # This fork must never inherit upstream's automatic public PyPI upload.

@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "source_commit": "e0a403f05cc31c629c1b30a2a70849a430ab39fa",
+  "archive_sha256": {
+    "bubus-1.5.6+baseproof.3-py3-none-any.whl": "9e4a5bdb3f9f0ff552c7635ab8887ffb43f51f2b1f6353eef4ed04b87445af9c",
+    "bubus-1.5.6+baseproof.3.tar.gz": "a23009dc8182986c10e00ce6ce669d0feb1618a213bf78b09ba03337435074da"
+  },
+  "source_file_sha256": {
+    "bubus/__init__.py": "7ab9af76de51939bc4ad6bbbbd8043ae5d127053d0126769c5e4827a3fc126d8",
+    "bubus/helpers.py": "7e1a968b750ca98edbd2036484248f7bd00f51537f1d3f711a73a5e4d52bda4d",
+    "bubus/logging.py": "0aea028939ce47f1b0af5c0cbff5c90742cb7b5c2df06572c4ea061ee800c3a3",
+    "bubus/models.py": "a927b461a5ce4d237324d8d84b079811023e95d4059a1f4ddc20ba788e2a1466",
+    "bubus/service.py": "14bdef2492b7670766dee4edbfc6427e43c35eab3a749ecfd4b9c762ea5b3e7e",
+    "pyproject.toml": "54409ba074789de089840bd1b1f92a777f64c5cd6b9a2a24000c4ab121b3b906",
+    "README.md": "656327f98fedb2dd870cb51cd03deff93dd4f52ce74cd3927aeae2ba57596b16",
+    "LICENSE": "4a7a9448a66aef9a1e41e62bfd1938287ebe460cc6abd2688d27ec77e24fd133"
+  },
+  "runtime_modules_identical_to_experimental": 5,
+  "wheel_record_entries_verified": 9,
+  "metadata_repository": "https://github.com/baseproof/browser-use-bubus",
+  "upstream_metadata_retained": true,
+  "private_classifier": true,
+  "license_preserved": true,
+  "requirements_unchanged": true,
+  "audit_script_sha256": "ccea5f745508871c903fbc6300079904de6d4631334cb8c572156be2642d3c21"
+}

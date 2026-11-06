@@ -83,7 +83,7 @@ the ownership regressions and the existing coverage gate against the installed
 wheel, with no runtime source overlay.
 
 Publication targets only
-`https://us-python.pkg.dev/legalai-460612/baseproof-py/`. Use the existing
+`https://us-python.pkg.dev/legalai-460612/baseproof-ai/`. Use the existing
 `rpa-sdk-publisher` identity for upload and separate `rpa-sdk-reader` identity for
 download. Verify both independently downloaded archive hashes and bytes before
 announcing the release. An existing version must match; never overwrite it or

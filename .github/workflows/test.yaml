@@ -26,6 +26,11 @@ jobs:
       # ["test_eventbus", ...]
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.14'
+      - name: Private publication refusal contracts
+        run: python -m unittest discover -s .github/scripts -p 'test_private_release.py'
       - id: lsgrep
         run: |
           TEST_FILENAMES="$(ls tests/test_*.py | sed 's|^tests/||' | sed 's|\.py$||' | jq -R -s -c 'split("\n")[:-1]')"

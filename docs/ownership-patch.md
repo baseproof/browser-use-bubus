@@ -69,8 +69,11 @@ remain historical evidence and are not the fork's final publication artifacts.
 ## Private release contract
 
 The inherited automatic/public PyPI publication path has been removed. The
-manual preparation workflow builds, tests and retains archives only. It does
-not upload to any package index. The test jobs explicitly select stable Python
+manual private-publication workflow runs only from main. Preparation must
+reproduce the exact archive hashes in the installed qualification and source
+audit; changed package source, tests or archive bytes are rejected. Publication
+consumes the retained preparation artifact without rebuilding it, including on
+a failed-job retry. The test jobs explicitly select stable Python
 3.14, matching the qualified consumer. The upstream `>=3.11` package floor is
 unchanged; this release does not newly qualify every supported Python version.
 
@@ -89,6 +92,15 @@ download. Verify both independently downloaded archive hashes and bytes before
 announcing the release. An existing version must match; never overwrite it or
 silently rebuild archives during a publication retry. No new credential lookup,
 service account, secret or IAM role is introduced by this patch.
+
+The workflow uses the existing organization `SDK_PUBLISHER_SA_KEY` and
+`SDK_READER_SA_KEY`, explicitly verifies their distinct service-account identities,
+checks existing registry bytes before upload, and uploads only missing qualified
+archives. Publication/readback evidence is retained by run and attempt. Invoke
+`publish.yml` on main after its source checks pass; failed publication is retried
+using the successful preparation job's retained artifact. Do not rerun preparation
+to substitute different bytes. Real provider/cloud and browser qualification of
+the consuming rpa-sdk image remains a separate gate.
 
 rpa-sdk selects the published local version and verifies its wheel hash before
 normal installation and base-image construction. Its final wheel, sdist, image,

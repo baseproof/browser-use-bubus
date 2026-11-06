@@ -1,4 +1,4 @@
-name: prepare private package
+name: publish qualified private package
 
 on:
   workflow_dispatch:
@@ -6,26 +6,75 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: private-package-publication
+  cancel-in-progress: false
+
 jobs:
   prepare:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    outputs:
+      bundle: ${{ steps.bundle.outputs.name }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.14'
+      - name: Reproduce the already-qualified archive bytes
+        run: |
+          python -m venv .build-tools
+          . .build-tools/bin/activate
+          python -m pip install uv==0.8.2 hatchling==1.33.0 twine==7.0.0
+          uv build --no-build-isolation --out-dir build/distributions
+          mkdir dist
+          cp build/distributions/*.whl build/distributions/*.tar.gz dist/
+          python .github/scripts/private_release.py verify --archives dist
+          python -m twine check dist/*
+      - id: bundle
+        run: echo "name=bubus-qualified-${GITHUB_SHA}-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.bundle.outputs.name }}
+          path: dist/*
+          if-no-files-found: error
+          retention-days: 90
+
+  publish:
+    needs: prepare
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v6
         with:
           python-version: '3.14'
-      - uses: astral-sh/setup-uv@v6
+      - uses: actions/download-artifact@v4
         with:
-          enable-cache: true
-          activate-environment: true
-      - run: uv sync
-      - run: uv run ruff check --no-fix --select PLE # quick check for syntax errors to avoid waiting time doing the rest of the build
-      - run: uv build
-      - run: uv run pytest tests
+          name: ${{ needs.prepare.outputs.bundle }}
+          path: dist
+      - run: python -m pip install twine==7.0.0
+      - uses: google-github-actions/auth@v2
+        id: publisher
+        with:
+          credentials_json: ${{ secrets.SDK_PUBLISHER_SA_KEY }}
+          export_environment_variables: false
+      - uses: google-github-actions/auth@v2
+        id: reader
+        with:
+          credentials_json: ${{ secrets.SDK_READER_SA_KEY }}
+          export_environment_variables: false
+      - uses: google-github-actions/setup-gcloud@v2
+      - name: Publish retained archives and independently verify both downloads
+        env:
+          PUBLISHER_KEY: ${{ steps.publisher.outputs.credentials_file_path }}
+          READER_KEY: ${{ steps.reader.outputs.credentials_file_path }}
+        run: |
+          python .github/scripts/private_release.py publish --archives dist \
+            --output publication --publisher-key "$PUBLISHER_KEY" --reader-key "$READER_KEY"
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
-          name: bubus-archives-${{ github.run_id }}-${{ github.run_attempt }}
-          path: dist/*
-          if-no-files-found: error
-      # Publication is a separate, qualified private-registry operation.
-      # This fork must never inherit upstream's automatic public PyPI upload.
+          name: bubus-publication-${{ github.run_id }}-${{ github.run_attempt }}
+          path: publication/
+          if-no-files-found: warn
+          retention-days: 90

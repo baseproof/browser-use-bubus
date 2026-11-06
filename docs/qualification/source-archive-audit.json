@@ -6,6 +6,7 @@
     "bubus-1.5.6+baseproof.3.tar.gz": "a23009dc8182986c10e00ce6ce669d0feb1618a213bf78b09ba03337435074da"
   },
   "source_file_sha256": {
+    ".gitignore": "e1433a309ee74b2c77f211db74b30641fde2126fe93301f9d6ca98045aca3927",
     "bubus/__init__.py": "7ab9af76de51939bc4ad6bbbbd8043ae5d127053d0126769c5e4827a3fc126d8",
     "bubus/helpers.py": "7e1a968b750ca98edbd2036484248f7bd00f51537f1d3f711a73a5e4d52bda4d",
     "bubus/logging.py": "0aea028939ce47f1b0af5c0cbff5c90742cb7b5c2df06572c4ea061ee800c3a3",

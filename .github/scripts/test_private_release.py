@@ -23,6 +23,7 @@ class QualificationTests(unittest.TestCase):
         self.records.mkdir(parents=True)
         self.version = '1.5.6+baseproof.3'
         (self.root / 'pyproject.toml').write_text(f'[project]\nversion = "{self.version}"\n')
+        (self.root / '.gitignore').write_text('dist/\n')
         (self.root / 'bubus/__init__.py').write_text('qualified = True\n')
         (self.root / 'tests/test_owner.py').write_text('def test_owner(): pass\n')
         names = (f'bubus-{self.version}-py3-none-any.whl', f'bubus-{self.version}.tar.gz')
@@ -44,7 +45,7 @@ class QualificationTests(unittest.TestCase):
             'passed': True,
             'source_commit': 'a' * 40,
             'archive_sha256': {name: item['sha256'] for name, item in self.expected.items()},
-            'source_file_sha256': {name: self.digest(name) for name in ('pyproject.toml', 'bubus/__init__.py')},
+            'source_file_sha256': {name: self.digest(name) for name in ('.gitignore', 'pyproject.toml', 'bubus/__init__.py')},
         }
         self.write_receipts()
 
@@ -59,7 +60,7 @@ class QualificationTests(unittest.TestCase):
         self.assertEqual(release.verify(self.archives, self.root), (self.version, self.expected))
 
     def test_rejects_source_and_test_changes(self):
-        for name in ('bubus/__init__.py', 'tests/test_owner.py'):
+        for name in ('.gitignore', 'bubus/__init__.py', 'tests/test_owner.py'):
             with self.subTest(name=name):
                 original = (self.root / name).read_bytes()
                 (self.root / name).write_bytes(original + b'# changed\n')

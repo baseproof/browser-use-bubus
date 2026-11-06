@@ -2,6 +2,7 @@ import asyncio
 import contextvars
 import inspect
 import logging
+import threading
 import traceback
 import warnings
 import weakref
@@ -138,7 +139,7 @@ class CleanShutdownQueue(asyncio.Queue[QueueEntryType]):
 _current_event_context: ContextVar['BaseEvent[Any] | None'] = ContextVar('current_event', default=None)
 # Context variable to track if we're inside a handler (for nested event detection)
 inside_handler_context: ContextVar[bool] = ContextVar('inside_handler', default=False)
-# Context variable to track if we hold the global lock (for re-entrancy across tasks)
+# Context variable tracking this context's current-loop lock (for re-entrancy across tasks)
 holds_global_lock: ContextVar[bool] = ContextVar('holds_global_lock', default=False)
 # Context variable to track the current handler ID (for tracking child events)
 _current_handler_id_context: ContextVar[str | None] = ContextVar('current_handler_id', default=None)
@@ -197,16 +198,24 @@ class ReentrantLock:
             return False
 
 
-# Global re-entrant lock shared by all EventBus instances
-_global_eventbus_lock: ReentrantLock | None = None
+# A loop's active/waiting contexts retain its lock; this registry retains
+# neither closed loops nor locks whose semaphores may refer back to a loop.
+_global_eventbus_locks: weakref.WeakKeyDictionary[asyncio.AbstractEventLoop, weakref.ReferenceType[ReentrantLock]] = (
+    weakref.WeakKeyDictionary()
+)
+_global_eventbus_locks_guard = threading.Lock()
 
 
 def _get_global_lock() -> ReentrantLock:
-    """Get or create the global EventBus lock."""
-    global _global_eventbus_lock
-    if _global_eventbus_lock is None:
-        _global_eventbus_lock = ReentrantLock()
-    return _global_eventbus_lock
+    """Get the shared EventBus lock owned by the current running loop."""
+    loop = asyncio.get_running_loop()
+    with _global_eventbus_locks_guard:
+        reference = _global_eventbus_locks.get(loop)
+        lock = None if reference is None else reference()
+        if lock is None:
+            lock = ReentrantLock()
+            _global_eventbus_locks[loop] = weakref.ref(lock)
+        return lock
 
 
 def _log_pretty_path(path: Path | str | None) -> str:
@@ -274,6 +283,7 @@ class EventBus:
     _is_running: bool = False
     _runloop_task: asyncio.Task[None] | None = None
     _on_idle: asyncio.Event | None = None
+    _loop: asyncio.AbstractEventLoop | None = None  # the event loop this bus's run loop was started on
 
     def __init__(
         self,
@@ -370,6 +380,10 @@ class EventBus:
 
     def __repr__(self) -> str:
         return str(self)
+
+    def is_running_on(self, loop: asyncio.AbstractEventLoop) -> bool:
+        """Whether this bus is running on the specified owner loop."""
+        return self._is_running and self._loop is loop
 
     @property
     def events_pending(self) -> list['BaseEvent[Any]']:
@@ -733,6 +747,7 @@ class EventBus:
                     self._on_idle.clear()  # Start in a busy state unless we confirm queue is empty by running step() at least once
 
                 # Create and start the run loop task
+                self._loop = loop
                 self._runloop_task = loop.create_task(self._run_loop(), name=f'{self}._run_loop')
                 self._is_running = True
             except RuntimeError:
@@ -947,7 +962,7 @@ class EventBus:
         # Clear idle state when we get an event
         self._on_idle.clear()
 
-        # Always acquire the global lock (it's re-entrant across tasks)
+        # Always acquire the current loop's lock (it's re-entrant across tasks)
         async with _get_global_lock():
             # Process the event
             await self.process_event(event, timeout=timeout)

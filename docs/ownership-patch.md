@@ -94,3 +94,29 @@ rpa-sdk selects the published local version and verifies its wheel hash before
 normal installation and base-image construction. Its final wheel, sdist, image,
 freeze and native-Linux browser gates still need their own qualification. RPA
 then consumes that published SDK pair; it does not carry the patch implementation.
+
+## Final-metadata candidate evidence
+
+The [installed-wheel receipt](qualification/1.5.6+baseproof.3.json) records
+149 passing tests across 14 files, including the unchanged 20,000-event stress
+case and 11 new owner-local regressions. Coverage is 82.51% against the upstream
+80% requirement. Strict Pyright reports zero errors/warnings; Ruff lint and
+format checks pass. The wrong-loop regression fails stock 1.5.6 at the ownership
+assertion. The waiter-progress regression times out on both stock and PR30,
+while the corrected candidate passes. Those negative controls remain failures.
+
+Archives were built once from `e0a403f05cc31c629c1b30a2a70849a430ab39fa`, sdist
+then wheel, using uv 0.8.2 and Hatchling 1.33.0:
+
+| Archive | SHA256 |
+| --- | --- |
+| `bubus-1.5.6+baseproof.3-py3-none-any.whl` | `9e4a5bdb3f9f0ff552c7635ab8887ffb43f51f2b1f6353eef4ed04b87445af9c` |
+| `bubus-1.5.6+baseproof.3.tar.gz` | `a23009dc8182986c10e00ce6ce669d0feb1618a213bf78b09ba03337435074da` |
+
+An [independent archive audit](qualification/source-archive-audit.json) verifies
+the committed package source, all wheel RECORD entries, metadata and unchanged
+MIT license. The five runtime modules match the earlier experimental wheel;
+the changed metadata has its own installed qualification above. Local tests
+used Linux/amd64, the exact installed wheel and no runtime source overlay.
+Native-Linux CI, private publication/readback and the final rpa-sdk image are
+separate gates; this receipt does not claim they have completed.

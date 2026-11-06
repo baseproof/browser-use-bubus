@@ -1,0 +1,294 @@
+{
+  "archives": [
+    {
+      "bytes": 52847,
+      "filename": "bubus-1.5.6+baseproof.3-py3-none-any.whl",
+      "sha256": "9e4a5bdb3f9f0ff552c7635ab8887ffb43f51f2b1f6353eef4ed04b87445af9c"
+    },
+    {
+      "bytes": 60900,
+      "filename": "bubus-1.5.6+baseproof.3.tar.gz",
+      "sha256": "a23009dc8182986c10e00ce6ce669d0feb1618a213bf78b09ba03337435074da"
+    }
+  ],
+  "audit_sha256": "b78463c8775b5437b50d7e5ba50472a5baa9d4bbbf28868456f56a893f19a7ce",
+  "build": {
+    "hatchling": "1.33.0",
+    "later_setup_diagnostic": "pip --version failed: isolated build environment has no pip; archives were not rebuilt",
+    "log_sha256": "dbc94c4a2909febeeda225341bd9278fde94cf4b0a289a691f5345ef18d44642",
+    "order": "sdist then wheel from that sdist, built once",
+    "python": "3.14.9",
+    "tool_freeze_sha256": "0f00e63bb4b120695cd0e8747686a811675a8e10f0d94fc103135cc68275f1cd",
+    "uv": "0.8.2"
+  },
+  "coverage": {
+    "covered_lines": 1274,
+    "json_sha256": "97c3b147a5c7cf6a76e48386fdd7e788c6ece18e4bf8f9bfc624841be1bf2f5b",
+    "percent": 82.51295336787565,
+    "required_percent": 80,
+    "runner_sha256": "32255ba6e5b75b662970737251fb47300b0a65020e2b4e8e19e06d8aba40dfb8",
+    "statements": 1544
+  },
+  "image": "sha256:1c65a117297f260a4de8c5197d138789ec1071567a9efb4f23ccc590b679918a",
+  "installed": {
+    "installed_payload_sha256": {
+      "bubus-1.5.6+baseproof.3.dist-info/METADATA": "6056dbb3825dcbf749534063e7cf54434e810d59f9a48a0605403c6568431ae9",
+      "bubus-1.5.6+baseproof.3.dist-info/WHEEL": "da266b2640c891e0e1d24f528a428ca85b913feb9aea66f822bd40b04478044c",
+      "bubus-1.5.6+baseproof.3.dist-info/licenses/LICENSE": "4a7a9448a66aef9a1e41e62bfd1938287ebe460cc6abd2688d27ec77e24fd133",
+      "bubus/__init__.py": "7ab9af76de51939bc4ad6bbbbd8043ae5d127053d0126769c5e4827a3fc126d8",
+      "bubus/helpers.py": "7e1a968b750ca98edbd2036484248f7bd00f51537f1d3f711a73a5e4d52bda4d",
+      "bubus/logging.py": "0aea028939ce47f1b0af5c0cbff5c90742cb7b5c2df06572c4ea061ee800c3a3",
+      "bubus/models.py": "a927b461a5ce4d237324d8d84b079811023e95d4059a1f4ddc20ba788e2a1466",
+      "bubus/service.py": "14bdef2492b7670766dee4edbfc6427e43c35eab3a749ecfd4b9c762ea5b3e7e"
+    },
+    "module_origin": "/usr/local/lib/python3.14/site-packages/bubus/__init__.py",
+    "version": "1.5.6+baseproof.3"
+  },
+  "limits": {
+    "cpus": 2,
+    "memory_gib": 2,
+    "network": "none",
+    "per_file_seconds": 180,
+    "stress_seconds": 300
+  },
+  "negative_controls": [
+    {
+      "assertion": "AssertionError",
+      "case": "drain",
+      "exit_code": 1,
+      "expected_failed_control": true,
+      "image": "sha256:67aa112d14a71e1bfd59d051f38bfc32794e79be694134c9a5a44134ce7aa1e9",
+      "junit_sha256": "4401679c55e5b81dff6c7fa4d568e2470da80561cca6b5ab35f6514ab80dcf78",
+      "log_sha256": "189d696d5c2960db1866b26e6f7745444f8a9b71421284d1eb4447edaba13281"
+    },
+    {
+      "assertion": "TimeoutError",
+      "case": "lock",
+      "exit_code": 1,
+      "expected_failed_control": true,
+      "image": "sha256:67aa112d14a71e1bfd59d051f38bfc32794e79be694134c9a5a44134ce7aa1e9",
+      "junit_sha256": "46fe607038be1b911d26e511551b1a52baa0370f919e0e63304a67be64749006",
+      "log_sha256": "e267e8a8348849a66227b3ec99f4880ca0f65a5dcbedccfa12072b7bb271e450"
+    },
+    {
+      "assertion": "TimeoutError",
+      "case": "pr30-lock",
+      "exit_code": 1,
+      "expected_failed_control": true,
+      "image": "sha256:2942017a8d15b8466e8aafce423ed573e92f891f00a6c9bbf0214ce9556faa56",
+      "junit_sha256": "3a8ebe9df1718730a09b64bd3040d0719f4e6da9453b93dc106085c4f9e710f7",
+      "log_sha256": "6b316225bd05103ef582797001d4a3a09bc4c702332acccade0864758a944a8f"
+    }
+  ],
+  "preflight_sha256": "b97596144bd77f8bbd53ab210646652b8def500289d8b5f43688a8f5bf1aaf6b",
+  "publication_status": "not_published",
+  "qualification_status": "installed_wheel_pass",
+  "raw_evidence": ".qualification/installed-e0a403f, coverage-e0a403f, baseline-e0a403f, source-check-e0a403f",
+  "runner_sha256": "03792b6d70748a8de4d9fd64d5ed6ea4c63aae8dd9b7c00db2a9bc86e36bfdd3",
+  "runtime_source_overlays": 0,
+  "schema_version": 1,
+  "scope": "Local Linux/amd64 installed-wheel qualification; no new browser/provider/cloud or production-capacity claim. Native Linux CI and SDK final-image gates remain separate.",
+  "source_checks": {
+    "config_change": "only developer-local venv selectors removed; installed interpreter explicit",
+    "errors": 0,
+    "log_sha256": "cd4acdcd16d75b2c8a98a4ad352f7bc596b34ab61053fc97464428248143dd32",
+    "original_strict_diagnostics_preserved": true,
+    "pyright": "1.1.404",
+    "ruff": "0.12.7",
+    "warnings": 0
+  },
+  "source_commit": "e0a403f05cc31c629c1b30a2a70849a430ab39fa",
+  "source_repository": "https://github.com/baseproof/browser-use-bubus",
+  "tests": [
+    {
+      "coverage_sha256": "daf9b16478e2ad4872e207fb9892bd86e5914eb061ec8f1875ccdb39a9b0cd3d",
+      "errors": 0,
+      "failures": 0,
+      "file": "tests/test_attribute_error_fix.py",
+      "installed_preflight_sha256": "93a45180c6b605f10910f3a38fa8a7e6273be4ce4bc07e65019e5124ce451927",
+      "junit_sha256": "bcc9853bbc30c173743f61e4b5400418b6c2fce7eba48318d090febfceab600e",
+      "log_sha256": "266df40c5df05b6a2887e5130bee5365e4dd7ec630d2899ce4c7b47a13b1f8c1",
+      "seconds": 0.577,
+      "skipped": 0,
+      "source_sha256": "7f1c7e9f5c338c2dbe7ef79e6960b3b9168785c77fc76b3df2032a99d73d8ea9",
+      "tests": 6
+    },
+    {
+      "coverage_sha256": "736d8ea8c1f30c3575433d0ed19057cc0d1f99c457e56923b6e7cb67ae761b37",
+      "errors": 0,
+      "failures": 0,
+      "file": "tests/test_auto_event_result_type.py",
+      "installed_preflight_sha256": "93a45180c6b605f10910f3a38fa8a7e6273be4ce4bc07e65019e5124ce451927",
+      "junit_sha256": "f29a9f13fe69104567cb06237a5b91c08673c13b304f9e94d5c4a3aea32580d7",
+      "log_sha256": "86ca73864bd11537ae83345021ae1b303e0e7ee48b64806bbae3a4d210a98430",
+      "seconds": 0.724,
+      "skipped": 0,
+      "source_sha256": "8b8364d8f660d76a1ff70fa407b71b4caf1e51d175c690e008480bfca85d366d",
+      "tests": 17
+    },
+    {
+      "coverage_sha256": "3eb96e859feca1c9139e3004b7cbf59a3ae070f23988bd5a273a445ea5db8d0e",
+      "errors": 0,
+      "failures": 0,
+      "file": "tests/test_comprehensive_patterns.py",
+      "installed_preflight_sha256": "93a45180c6b605f10910f3a38fa8a7e6273be4ce4bc07e65019e5124ce451927",
+      "junit_sha256": "1dbd9c7f21a37c2c92965be70b1cdf2498a7a1f0025321dff2f90dfbc16471d9",
+      "log_sha256": "eef421af4ea63238017c512e494d5b95779086b6d7c2a960e03e215f62071d83",
+      "seconds": 1.298,
+      "skipped": 0,
+      "source_sha256": "63372b92148ea81e1707e5bb90781458795f307e3bcac6334dcb115515718fb6",
+      "tests": 2
+    },
+    {
+      "coverage_sha256": "043e96324c904794889b5f0aa1653eebfadd83c8256edddf357380c46bfb4df9",
+      "errors": 0,
+      "failures": 0,
+      "file": "tests/test_event_bus_property.py",
+      "installed_preflight_sha256": "93a45180c6b605f10910f3a38fa8a7e6273be4ce4bc07e65019e5124ce451927",
+      "junit_sha256": "97b4be862204f32e3a977b438fdbd63156d71e368f91d3f23ecea6c351d76ab7",
+      "log_sha256": "a2421da02baef9478379ed8ecacc35f12bb523d8469b3c305f6d285d082197c1",
+      "seconds": 0.781,
+      "skipped": 0,
+      "source_sha256": "c83861d70caca1ce3a4892650e2ccc341a0b4af8293e37cac77368cea5c9cd23",
+      "tests": 8
+    },
+    {
+      "coverage_sha256": "18d80559b3023b0311de6f7213782e4857f660ec6dd6812837fea6feade6cdde",
+      "errors": 0,
+      "failures": 0,
+      "file": "tests/test_eventbus.py",
+      "installed_preflight_sha256": "93a45180c6b605f10910f3a38fa8a7e6273be4ce4bc07e65019e5124ce451927",
+      "junit_sha256": "8653370214ce0b2001fb1939f9562b2b7d163da9ccd5c090a5db6ca760edbacb",
+      "log_sha256": "6ee972d2b16786a328248146930ea345e26631d532e7aa873b61268dc03a3379",
+      "seconds": 4.077,
+      "skipped": 0,
+      "source_sha256": "4b9a1f2902562287379e57561ea78e4ce1c23e5eb2e6cf4deb22ae2d180de89a",
+      "tests": 49
+    },
+    {
+      "coverage_sha256": "d3164073fcb0204d459feb5d7dda4faa82700f43633dd3d85011cbb7cceb62e6",
+      "errors": 0,
+      "failures": 0,
+      "file": "tests/test_handler_timeout.py",
+      "installed_preflight_sha256": "93a45180c6b605f10910f3a38fa8a7e6273be4ce4bc07e65019e5124ce451927",
+      "junit_sha256": "420cc6fbc891ef990dd5ed35b12d803832c9d9a499329ad807452220493d1782",
+      "log_sha256": "d4018ec1641cc76547f18a51cb10a0af821d510a7e73acd5be94ddc50f693ccc",
+      "seconds": 3.659,
+      "skipped": 0,
+      "source_sha256": "e9935136f0ec8fb4412c158119ad15c48654311ff942e38a3040af28b7e99328",
+      "tests": 1
+    },
+    {
+      "coverage_sha256": "5fcc30da8c2c6a3abe86fb5d6082d4fbc67f186002e07b3bea83bbe6055c3590",
+      "errors": 0,
+      "failures": 0,
+      "file": "tests/test_log_history_tree.py",
+      "installed_preflight_sha256": "93a45180c6b605f10910f3a38fa8a7e6273be4ce4bc07e65019e5124ce451927",
+      "junit_sha256": "5a03ba212f4c6fd5d32adc257b3857b90bfd99ae1f40dc91af9c230d7834f4a2",
+      "log_sha256": "b684501e19ccf630b1ba67e392e34906b2249468e1fcb9d48dac18c2a8e28745",
+      "seconds": 0.543,
+      "skipped": 0,
+      "source_sha256": "7da009f248e0feae30fef68c039e1d86874bc83a47c2ca00588e427e36e4f4ed",
+      "tests": 7
+    },
+    {
+      "coverage_sha256": "6ace69a663be4e640cd2c6c118d7e6bcebad0670027a53cf49a9e6157a90f807",
+      "errors": 0,
+      "failures": 0,
+      "file": "tests/test_loop_ownership.py",
+      "installed_preflight_sha256": "93a45180c6b605f10910f3a38fa8a7e6273be4ce4bc07e65019e5124ce451927",
+      "junit_sha256": "08554a82dc3fc9ee05617b991e98811e7eeb76d1b5ddf2cb256c3f928e07f006",
+      "log_sha256": "f99d9a99d61c3ba5b82ef1819790cfcac004f25c0602b9c3d614f9967bea8ede",
+      "seconds": 0.664,
+      "skipped": 0,
+      "source_sha256": "91fd86b0464035358e6ee6f56b1e46c6b5b4c67d6cb1448767df8d55784481dc",
+      "tests": 11
+    },
+    {
+      "coverage_sha256": "9067a264cf243cbe62e979b52ca563e9e626fa2159ae7e10675305545944583f",
+      "errors": 0,
+      "failures": 0,
+      "file": "tests/test_name_conflict_gc.py",
+      "installed_preflight_sha256": "93a45180c6b605f10910f3a38fa8a7e6273be4ce4bc07e65019e5124ce451927",
+      "junit_sha256": "86e3096fc7cc3c6d7e9959ef3326e6adbfb4e1542814a23a04493a678640bd91",
+      "log_sha256": "bbcb422a403d9c98b8b389f873f49698a687a0c96503c02033095d931c7795e7",
+      "seconds": 0.508,
+      "skipped": 0,
+      "source_sha256": "9952f114d502d3dd321823433f7756259bc9e73a7593d05c8dc6563019ab280f",
+      "tests": 9
+    },
+    {
+      "coverage_sha256": "ba45c581ef72e9738ca64566e1915b4b3479dd3967f68ab49697e1cff9cd94da",
+      "errors": 0,
+      "failures": 0,
+      "file": "tests/test_parent_event_tracking.py",
+      "installed_preflight_sha256": "93a45180c6b605f10910f3a38fa8a7e6273be4ce4bc07e65019e5124ce451927",
+      "junit_sha256": "01ded6268288f75f72ab397c3697280b6687093df54ca398b13ec4ed1fbfea8d",
+      "log_sha256": "15cdd1be8ad3199eb9342d4078ff6c4559dd6157b48593a9778c065ae5193f9b",
+      "seconds": 0.667,
+      "skipped": 0,
+      "source_sha256": "380b100e156f7d59095bf3bf9c9d39119b4a2283781c65544cd7b22a7712a8e8",
+      "tests": 14
+    },
+    {
+      "coverage_sha256": "ff89ae53b50b854a470f328dbb586abc9168703978cf635a9dcfcb86e64447be",
+      "errors": 0,
+      "failures": 0,
+      "file": "tests/test_semaphores.py",
+      "installed_preflight_sha256": "93a45180c6b605f10910f3a38fa8a7e6273be4ce4bc07e65019e5124ce451927",
+      "junit_sha256": "6459dc100a804b498f0a2bc5c5341a01a6551ed3307786824a58235a8b83adc4",
+      "log_sha256": "399c435661ef25b2076277619450728ca8a977dd1fb70d19b89babdce8666dbc",
+      "seconds": 19.723,
+      "skipped": 0,
+      "source_sha256": "bcead21badadc92b03539e31a0afb0fd3b820a9ae38503800f694c6bf1ea2ddd",
+      "tests": 13
+    },
+    {
+      "coverage_sha256": "d5d4500e2f1267d95db53512720896152101f2c745b5553c095b452394aca946",
+      "errors": 0,
+      "failures": 0,
+      "file": "tests/test_simple_typed_results.py",
+      "installed_preflight_sha256": "93a45180c6b605f10910f3a38fa8a7e6273be4ce4bc07e65019e5124ce451927",
+      "junit_sha256": "72b2ae3b147b6ad3a9952c87a5a5ade4c126d2ac101107b7375d6c86fa69ca24",
+      "log_sha256": "941694ddd2cb6fa0587aebfa45574dab92411e99c0e3cccfeb42bca694d5aa56",
+      "seconds": 0.474,
+      "skipped": 0,
+      "source_sha256": "7dfb23372fcdb29e1b6626cb407db115668ba5fea5c43a58747783d976732e43",
+      "tests": 1
+    },
+    {
+      "coverage_sha256": "09d23e6ea78b74359e42d044162c923e654e2d82dbec00145a3c0b8f04d63a7a",
+      "errors": 0,
+      "failures": 0,
+      "file": "tests/test_stress_20k_events.py",
+      "installed_preflight_sha256": "93a45180c6b605f10910f3a38fa8a7e6273be4ce4bc07e65019e5124ce451927",
+      "junit_sha256": "b4380c6a6923b7be0ee282d34c498d8c3d2e478de1a084b401e0163797c8ffd4",
+      "log_sha256": "f50ac7c9e9c317257f1f2a6c169adb833ef4ca059177d158ff5b9c712eb970d7",
+      "seconds": 43.82,
+      "skipped": 0,
+      "source_sha256": "8ccc10c19fa238fc89e07671ec4b7cb20732c05125fddf8087adaea03e230b1b",
+      "tests": 3
+    },
+    {
+      "coverage_sha256": "1e9681739fa7f9d3997a20d4e0ab8b3a7cecb8698063d4aa81e4dcf6bb9aa942",
+      "errors": 0,
+      "failures": 0,
+      "file": "tests/test_typed_event_results.py",
+      "installed_preflight_sha256": "93a45180c6b605f10910f3a38fa8a7e6273be4ce4bc07e65019e5124ce451927",
+      "junit_sha256": "d6e0fba3c443bea54a1ab30f5a5ab01e667809bbbf8ba96954f6dce0c78e5ac0",
+      "log_sha256": "ac2ca5159a8dabc1b56bdc7f07617b8ee3eda4f2c83344774d9e8881452478b0",
+      "seconds": 0.678,
+      "skipped": 0,
+      "source_sha256": "475cd88fbf8158b32d8d67c2bf5b97542241ab77704f8317e3bd9e8f431c831d",
+      "tests": 8
+    }
+  ],
+  "totals": {
+    "errors": 0,
+    "failed": 0,
+    "files": 14,
+    "passed": 149,
+    "skipped": 0
+  },
+  "version": "1.5.6+baseproof.3"
+}

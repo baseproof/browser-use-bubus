@@ -1,0 +1,50 @@
+{
+  "workflow_run": 42149727489,
+  "workflow_attempt": 1,
+  "ci_publication": {
+    "package": "bubus",
+    "version": "1.5.6+baseproof.3",
+    "repository": "https://us-python.pkg.dev/legalai-460612/baseproof-ai/",
+    "publisher_identity": "rpa-sdk-publisher@legalai-460612.iam.gserviceaccount.com",
+    "reader_identity": "rpa-sdk-reader@legalai-460612.iam.gserviceaccount.com",
+    "source_commit": "f917fefbc515d5af312c86cb345d845a85381acb",
+    "requested_uploads": [
+      "bubus-1.5.6+baseproof.3-py3-none-any.whl",
+      "bubus-1.5.6+baseproof.3.tar.gz"
+    ],
+    "upload_exit": 0,
+    "independently_verified": {
+      "bubus-1.5.6+baseproof.3-py3-none-any.whl": {
+        "sha256": "9e4a5bdb3f9f0ff552c7635ab8887ffb43f51f2b1f6353eef4ed04b87445af9c",
+        "bytes": 52847,
+        "resource": "projects/legalai-460612/locations/us/repositories/baseproof-ai/files/bubus%2Fbubus-1.5.6+baseproof.3-py3-none-any.whl"
+      },
+      "bubus-1.5.6+baseproof.3.tar.gz": {
+        "sha256": "a23009dc8182986c10e00ce6ce669d0feb1618a213bf78b09ba03337435074da",
+        "bytes": 60900,
+        "resource": "projects/legalai-460612/locations/us/repositories/baseproof-ai/files/bubus%2Fbubus-1.5.6+baseproof.3.tar.gz"
+      }
+    },
+    "complete": true
+  },
+  "independent_readback": {
+    "package": "bubus",
+    "version": "1.5.6+baseproof.3",
+    "verified_at": "2026-11-06T02:23:30.915438+00:00",
+    "reader_identity": "rpa-sdk-reader@legalai-460612.iam.gserviceaccount.com",
+    "source_commit": "f917fefbc515d5af312c86cb345d845a85381acb",
+    "archives": [
+      {
+        "filename": "bubus-1.5.6+baseproof.3-py3-none-any.whl",
+        "bytes": 52847,
+        "sha256": "9e4a5bdb3f9f0ff552c7635ab8887ffb43f51f2b1f6353eef4ed04b87445af9c"
+      },
+      {
+        "filename": "bubus-1.5.6+baseproof.3.tar.gz",
+        "bytes": 60900,
+        "sha256": "a23009dc8182986c10e00ce6ce669d0feb1618a213bf78b09ba03337435074da"
+      }
+    ],
+    "complete": true
+  }
+}

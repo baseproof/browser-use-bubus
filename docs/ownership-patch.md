@@ -117,7 +117,20 @@ normal installation and base-image construction. Its final wheel, sdist, image,
 freeze and native-Linux browser gates still need their own qualification. RPA
 then consumes that published SDK pair; it does not carry the patch implementation.
 
-## Final-metadata candidate evidence
+## Published artifact evidence
+
+`bubus==1.5.6+baseproof.3` is published in `baseproof-ai` from release commit
+`f917fefbc515d5af312c86cb345d845a85381acb`. The
+[publication receipt](qualification/publication-1.5.6+baseproof.3.json) records
+successful upload with the publisher identity and independent download of both
+archives with the separate reader identity. A second local reader-only download
+confirmed their lengths, hashes and byte equality with the accepted Linux bundle.
+The release tag is `v1.5.6+baseproof.3`.
+
+[Issue 2's consumer disposition](qualification/issue-2-consumer-disposition.md)
+remains explicit: it is an open pre-existing defect, outside the two corrections
+in this release. rpa-sdk's final wheel/image and RPA's final consumer images still
+require their own qualification; publishing Bubus alone does not update them.
 
 The [installed-wheel receipt](qualification/1.5.6+baseproof.3.json) records
 149 passing tests across 14 files, including the unchanged 20,000-event stress
